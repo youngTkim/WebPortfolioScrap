@@ -180,6 +180,7 @@ const Line = styled.article`
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 8px;
   span {
     margin-bottom: 12px;
