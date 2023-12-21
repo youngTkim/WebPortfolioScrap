@@ -158,6 +158,7 @@ export default function Header({ scene1 }) {
               </div>
             </HeaderNavLi>
             <HeaderNavLi />
+            <HeaderNavLi />
             <HeaderNavLi>
               <label className="submenu_title">
                 <DragHandleIcon />
@@ -245,10 +246,10 @@ const HeaderNavContainer = styled.nav`
   display: flex;
   align-items: center;
   height: 100%;
-  max-width: 1024px;
+  width: 100%;
   margin: 0 auto;
   width: 100%;
-  padding: 0 22px;
+  padding: 0 10vh;
 `;
 
 const HeaderNavUlContainer = styled.ul`

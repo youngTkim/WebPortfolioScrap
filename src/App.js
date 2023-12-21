@@ -16,7 +16,9 @@ import Footer from "./Footer";
 function App() {
   useEffect(() => {
     AOS.init();
+
     alert("이 포트폴리오는 상업적 용도로 사용되지 않습니다!");
+    window.scrollTo(0, 1);
   }, []);
 
   const [scene1, setScene1] = useState(true);
@@ -25,23 +27,23 @@ function App() {
   //Background height 1732.5
 
   window.addEventListener("scroll", function () {
-    if (window.scrollY < 500 && !scene1) {
+    if (window.scrollY < 300 && !scene1) {
       setScene1(true);
       setScene2(false);
-    } else if (window.scrollY >= 500 && scene1) {
+    } else if (window.scrollY >= 300 && scene1) {
       setScene1(false);
       setScene2(true);
     }
-    if (window.scrollY < 1000 && !scene2) {
+    if (window.scrollY < 750 && !scene2) {
       setScene2(true);
       setScene3(false);
-    } else if (window.scrollY >= 1000 && scene2) {
+    } else if (window.scrollY >= 750 && scene2) {
       setScene2(false);
       setScene3(true);
     }
-    if (window.scrollY < 1500 && !scene3) {
+    if (window.scrollY < 1100 && !scene3) {
       setScene3(true);
-    } else if (window.scrollY > 1500 && scene3) {
+    } else if (window.scrollY > 1100 && scene3) {
       setScene3(false);
     }
   });
@@ -49,8 +51,12 @@ function App() {
   return (
     <AppWrapper>
       <Header scene1={scene1} />
-      <Background className={`${scene3 ? "scene3" : "scene4"}`}>
-        <img src="https://withuplus.co.kr/images/main/main_visual1.jpg" />
+      <Background>
+        <img
+          style={scene3 ? { opacity: "1" } : { opacity: "0" }}
+          src="https://withuplus.co.kr/images/main/main_visual1.jpg"
+          alt="background"
+        />
       </Background>
       <Line1 data-aos="fade-right">
         <Line1Inner>
@@ -113,11 +119,6 @@ const AppWrapper = styled.div`
   min-height: 100vh;
 `;
 
-const MainWrapper = styled.main`
-  position: relative;
-  top: 1722.5px;
-`;
-
 const Line1 = styled.div`
   position: absolute;
   top: 40vh;
@@ -165,13 +166,14 @@ const MiddleLine = styled.span`
 `;
 
 const Background = styled.div`
-  max-width: 100%;
-  overflow: hidden;
-  object-fit: cover;
+  display: block;
+  width: 100%;
   transition: 0.5s ease;
-  touch-action: none;
-  &.scene4 {
-    opacity: 0;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: 0.5s ease;
   }
 `;
 

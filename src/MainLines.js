@@ -5,10 +5,8 @@ import { useEffect } from "react";
 const MainLinesWrapper = styled.div`
   display: flex;
   position: relative;
-
   width: 100%;
   height: 80vh;
-  border: 1px solid black;
 `;
 
 const LineFirst = styled.span`
@@ -41,7 +39,7 @@ const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid #212121;
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);

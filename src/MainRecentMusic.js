@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import AOS from "aos";
 
@@ -29,9 +29,10 @@ const CardLCarouselContainer = styled.section`
 const CarouselContainer = styled.div`
   display: flex;
   overflow-x: scroll;
-  min-width: 300vw;
-  height: 100%;
+  width: 340vw;
+  height: auto;
   padding: 0 90px;
+  transition: 0.25s ease;
 `;
 const CardLContainer = styled.span`
   display: flex;
@@ -49,14 +50,39 @@ const CardLContainer = styled.span`
     box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
   }
   img {
+    pointer-events: none;
     object-fit: cover;
   }
 `;
 
 export default function MainRecentMusic() {
+  const [isDragging, setisDragging] = useState(false);
+  const carouselRef = useRef(null);
+  const dragStartX = useRef(0);
+  const scrollLeft = useRef(0);
+
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const handleMouseDown = (e) => {
+    setisDragging(true);
+    dragStartX.current = e.pageX - carouselRef.current.offsetLeft;
+    scrollLeft.current = carouselRef.current.scrollLeft;
+    carouselRef.current.style.cursor = "grabbing";
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - dragStartX.current) * 3; // 드래그한 만큼 스크롤 이동
+    carouselRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    setisDragging(false);
+    carouselRef.current.style.cursor = "pointer";
+  };
   return (
     <>
       <CardLCarouselTitleContainer data-aos="fade-down">
@@ -64,7 +90,14 @@ export default function MainRecentMusic() {
           <span style={{ color: "#e30000" }}>Recent Music IP.</span>
         </CardLCarouselTitle>
       </CardLCarouselTitleContainer>
-      <CardLCarouselContainer data-aos="fade-down">
+      <CardLCarouselContainer
+        ref={carouselRef}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        data-aos="fade-down"
+      >
         <CarouselContainer>
           <div
             style={{

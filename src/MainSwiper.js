@@ -6,7 +6,7 @@ const CardLCarouselTitleContainer = styled.div`
   display: flex;
   font-family: "Poppins", serif;
   width: 100%;
-  height: 20vh;
+  height: 14vh;
 `;
 const CardLCarouselTitle = styled.article`
   display: flex;
@@ -51,6 +51,7 @@ const SwiperElement = styled.span`
   height: 100%;
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
   img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
     transition: 0.75s ease-in-out;
