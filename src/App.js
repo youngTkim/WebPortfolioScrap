@@ -183,9 +183,6 @@ const DingoMusic = styled.div`
   width: 100%;
   height: 100%;
   color: black;
-
-  width: 100vw;
-  height: 100vh;
   font-size: 100px;
   font-weight: 800;
 `;

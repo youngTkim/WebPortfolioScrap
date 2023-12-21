@@ -25,11 +25,12 @@ const CardLCarouselContainer = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
+  &::-webkit-scrollbar {
+    opacity: 0;
+  }
 `;
 const CarouselContainer = styled.div`
   display: flex;
-  overflow-x: scroll;
-  width: 340vw;
   height: auto;
   padding: 0 90px;
   transition: 0.25s ease;

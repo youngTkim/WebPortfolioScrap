@@ -116,7 +116,6 @@ export default function MainBusiness() {
   );
 }
 const MainBusinessWrapper = styled.div`
-  margin-top: -100vh;
   position: relative;
   display: flex;
   width: 100%;
@@ -124,12 +123,13 @@ const MainBusinessWrapper = styled.div`
 
 const StickyBox = styled.div`
   display: flex;
+  position: sticky;
   justify-content: center;
   overflow: hidden;
   align-items: center;
   height: 100vh;
+  width: 50%;
   z-index: 1;
-  position: sticky;
   top: 0%;
   left: 0%;
   background-color: #ff0000;
@@ -139,6 +139,7 @@ const StickyBox = styled.div`
     height: auto;
     width: 100%;
     transition: 0.5s ease;
+    pointer-events: none;
   }
   &:hover > img {
     transform: scale(1.08);
@@ -156,6 +157,7 @@ const ScrollBoxes = styled.div`
 const ScrollBox = styled.section`
   position: relative;
   overflow: hidden;
+  width: 100%;
 `;
 
 const Explanation = styled.section`
@@ -188,11 +190,11 @@ const ImageContainer = styled.div`
   display: flex;
   overflow: hidden;
   position: relative;
-
   img {
     display: block;
     height: auto;
     width: 100%;
+    pointer-events: none;
   }
   &:hover > img {
     transform: scale(1.08);
